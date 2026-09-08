@@ -1,0 +1,9 @@
+{
+    "nombre": "Escenario 3 - Interbloqueo Mortal",
+    "memoria_total": 1000,
+    "recursos_disponibles": ["Impresora", "Disco"],
+    "procesos": [
+        {"pid": "P1", "memoria": 200, "recursos": ["Impresora", "Disco"]},
+        {"pid": "P2", "memoria": 200, "recursos": ["Disco", "Impresora"]}
+    ]
+}

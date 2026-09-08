@@ -1,0 +1,10 @@
+{
+    "nombre": "Escenario 2 - Sobre Consumo",
+    "memoria_total": 500,
+    "recursos_disponibles": ["Impresora", "Disco", "GPU"],
+    "procesos": [
+        {"pid": "P1", "memoria": 300, "recursos": ["Impresora"]},
+        {"pid": "P2", "memoria": 500, "recursos": ["Disco"]},
+        {"pid": "P3", "memoria": 100, "recursos": ["GPU"]}
+    ]
+}

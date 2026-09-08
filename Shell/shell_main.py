@@ -1,22 +1,19 @@
 import os
 import time
-import utility as util
+import Utility as util
 from Shell import menu_actions as func
 
 isAdminRunning = True
 
 menuOptions = {
-    0 : {'message': ' Cerrar Menu', 'action': func.closeAdmin},
-    1 : {'message': '[WIP] Ver Procesos', 'action': func.wip},
-    2 : {'message': '[WIP] Ver Recursos Compartidos', 'action': func.wip},
-    3 : {'message': '[WIP] Ver Memoria', 'action': func.wip},
-    4 : {'message': '[WIP] Ver Archivos', 'action': func.wip},
-    5 : {'message': '[WIP] Ver Dispositivos', 'action': func.wip},
-    6 : {'message': '[WIP] Ver Solicitudes de recursos', 'action': func.wip},
-    7 : {'message': '[WIP] Ver Liberación de recursos', 'action': func.wip},
-    8 : {'message': '[WIP] Ver Situaciones de espera normal', 'action': func.wip},
-    9 : {'message': '[WIP] Ver Situaciones de interbloqueo', 'action': func.wip},
-    10 : {'message': '[WIP] Seleccionar Escenario', 'action': func.wip},
+    0 : {'message': ' Cerrar Simulador', 'action': func.cerrar_menu},
+    1 : {'message': ' Elegir Escenario a Cargar', 'action': func.elegir_escenario},
+    2 : {'message': ' Ejecutar Simulación (Modo Automático)', 'action': func.correr_simulacion},
+    3 : {'message': ' Ver Estado del Sistema (Procesos, Memoria y Recursos)', 'action': func.ver_estado_general},
+    4 : {'message': ' Administración de Archivos Similados', 'action': func.modulo_archivos},
+    5 : {'message': ' Monitoreo de Hardware Real (psutil)', 'action': func.modulo_monitoreo},
+    6 : {'message': '[WIP] Limpieza / Logs', 'action': func.en_construccion},
+    7 : {'message': ' Analizar y Resolver Interbloqueos', 'action': func.modulo_interbloqueos},
 }
 
 def bootUp():
@@ -43,11 +40,11 @@ def readOptions():
     userInput = input()
     time.sleep(util.SHORT_WAIT)
     try:
-        #Intentamos ejecutar la acción
+        # Intentamos ejecutar la acción
         menuOptions[int(userInput)]['action']()
-    except:
-        # Si es un Input invalido soltamos un mensaje de error
-        print("Error, valor ingresado incorrecto")
+    except Exception as e:
+        # AHORA SÍ VEREMOS EL ERROR REAL
+        print(f"\n[ERROR CRÍTICO DEL SISTEMA]: {e}")
         time.sleep(util.SHORT_WAIT)
     
     
