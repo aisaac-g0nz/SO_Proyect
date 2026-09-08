@@ -8,6 +8,7 @@ class SimuladorSO:
         self.memoria_disponible = 0
         self.recursos_libres = []
         self.procesos = []
+        self.archivos_simulados = {} # <- ¡ESTA ES LA LÍNEA QUE FALTABA!
 
     def cargar_escenario(self, ruta_archivo):
         try:
@@ -153,7 +154,7 @@ class SimuladorSO:
             print("  4. Espera Circular: [NO PRESENTE] - Es una simple inanición o falta de recursos base.")
     # --- MÓDULO DE ARCHIVOS (4.4) ---
     def operar_archivos(self):
-        print("\n--- SISTEMA DE ARCHIVOS SIMULADO ---")
+        print("\n--- SISTEMA DE ARCHIVOS ---")
         print("Archivos actuales en el disco virtual:", list(self.archivos_simulados.keys()) if self.archivos_simulados else "Ninguno")
         print("1. Crear archivo")
         print("2. Leer archivo")
@@ -184,8 +185,8 @@ class SimuladorSO:
 
     # --- MÓDULO DE MONITOREO REAL (4.10) ---
     def monitoreo_psutil(self):
-        print("\n--- MONITOREO DEL HARDWARE REAL (PC HOST) ---")
-        print("[!] NOTA: Estos son los recursos de tu computadora física, NO del simulador.")
+        print("\n--- MONITOREO DEL HARDWARE ---")
+        print("[!] Recursos de la computadora física.")
         
         cpu_usage = psutil.cpu_percent(interval=0.5)
         ram = psutil.virtual_memory()
@@ -195,3 +196,41 @@ class SimuladorSO:
         print(f"[*] Uso de Memoria RAM: {ram.percent}% ({ram.used // (1024**2)} MB usados)")
         print(f"[*] Uso de Almacenamiento: {disco.percent}% ({disco.free // (1024**3)} GB libres)")
         print(f"[*] Estado de Red: {len(psutil.net_connections())} conexiones activas")
+    # --- MÓDULO DE LOGS Y REGISTRO (4.9) ---
+    def guardar_y_ver_logs(self):
+        print("\n--- GESTIÓN DE REGISTRO DE EVENTOS (LOGS) ---")
+        
+        # Generamos la captura del estado actual
+        log_texto = "--- EVENTO DE SISTEMA REGISTRADO ---\n"
+        log_texto += f"Memoria Disponible: {self.memoria_disponible} / {self.memoria_total}\n"
+        log_texto += f"Recursos Libres: {self.recursos_libres}\n"
+        if not self.procesos:
+            log_texto += "Sin procesos cargados.\n"
+        else:
+            for p in self.procesos:
+                log_texto += f"[{p.pid}] {p.estado} - Mem: {p.memoria_req} - Rec: {p.recursos_asignados}\n"
+        
+        # Guardado automático (la "a" significa append, añade al final sin borrar lo anterior)
+        with open("simulacion.log", "a") as f:
+            f.write(log_texto + "\n")
+            
+        print("[+] El estado actual del sistema se ha guardado en 'simulacion.log'.")
+        
+        print("\nOpciones de Log:")
+        print("1. Ver el historial completo")
+        print("2. Limpiar el historial (Borrar log)")
+        
+        op = input("Elige una opción (1/2) o presiona Enter para volver: ")
+        
+        if op == "1":
+            try:
+                with open("simulacion.log", "r") as f:
+                    print("\n--- INICIO DEL ARCHIVO LOG ---")
+                    print(f.read())
+                    print("--- FIN DEL ARCHIVO LOG ---")
+            except FileNotFoundError:
+                print("[!] No hay logs guardados todavía.")
+        elif op == "2":
+            with open("simulacion.log", "w") as f:
+                f.write("")
+            print("[+] Archivo 'simulacion.log' limpiado exitosamente.")

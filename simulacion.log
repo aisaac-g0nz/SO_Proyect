@@ -1,0 +1,7 @@
+--- EVENTO DE SISTEMA REGISTRADO ---
+Memoria Disponible: 500 / 500
+Recursos Libres: ['Disco', 'Impresora', 'GPU']
+[P1] Terminado - Mem: 300 - Rec: ['Impresora']
+[P2] Esperando - Mem: 500 - Rec: []
+[P3] Terminado - Mem: 100 - Rec: ['GPU']
+

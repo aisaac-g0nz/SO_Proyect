@@ -12,7 +12,7 @@ menuOptions = {
     3 : {'message': ' Ver Estado del Sistema (Procesos, Memoria y Recursos)', 'action': func.ver_estado_general},
     4 : {'message': ' Administración de Archivos Similados', 'action': func.modulo_archivos},
     5 : {'message': ' Monitoreo de Hardware Real (psutil)', 'action': func.modulo_monitoreo},
-    6 : {'message': '[WIP] Limpieza / Logs', 'action': func.en_construccion},
+    6 : {'message': ' Registro de Eventos (Guardar/Ver Logs)', 'action': func.modulo_logs},
     7 : {'message': ' Analizar y Resolver Interbloqueos', 'action': func.modulo_interbloqueos},
 }
 

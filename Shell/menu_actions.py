@@ -82,3 +82,7 @@ def modulo_archivos():
 def modulo_monitoreo():
     mi_so.monitoreo_psutil()
     input("\nPresiona Enter para continuar...")
+
+def modulo_logs():
+    mi_so.guardar_y_ver_logs()
+    input("\nPresiona Enter para continuar...")
