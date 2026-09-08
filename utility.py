@@ -1,0 +1,1 @@
+SHORT_WAIT = 0.5
